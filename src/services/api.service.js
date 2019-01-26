@@ -6,21 +6,18 @@ export default {
   init () {
     axios.defaults.baseURL = API_URL
     axios.defaults.headers.common['Content-Type'] = 'application/json'
+    axios.defaults.headers.common['Accept'] = 'application/json'
   },
 
   setHeader () {
-    axios.defaults.headers.common['Authorization'] = `Token ${JwtService.getToken()}`
+    axios.defaults.headers.common['Authorization'] = `Bearer ${JwtService.getToken()}`
   },
 
   post (resource, params) {
-    return axios.post(`${resource}`, params).catch(error => {
-      throw new Error(`[ERROR] ApiService ${error}`)
-    })
+    return axios.post(`${resource}`, params)
   },
 
   get (resource) {
-    return axios.get(`${resource}`).catch(error => {
-      throw new Error(`[ERROR] ApiService ${error}`)
-    })
+    return axios.get(`${resource}`)
   }
 }

@@ -18,7 +18,8 @@ const mutations = {
 const actions = {
   getArticles ({ commit }) {
     ArticleService.get()
-      .then(data => commit('setArticles', data.data.articles))
+      .then(res => commit('setArticles', res.data.data))
+      .catch(error => commit('setError', error.response.data))
   }
 }
 

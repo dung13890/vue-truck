@@ -2,16 +2,17 @@
   <div class="login-page">
     <div class="container page">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-4 offset-md-4">
           <div class="card">
-            <h1 class="card-header">Login</h1>
-            <div class="card-body">
+            <div class="card-block">
+              <h1 class="card-title">{{ $t('login.txt_login') }}</h1>
+              <p class="text-muted">{{ $t('login.txt_login_hint') }}</p>
               <fieldset class="form-group">
                 <input
                   class="form-control form-control-lg"
                   type="text"
                   v-model="email"
-                  placeholder="Email"
+                  :placeholder="$t('login.lbl_email')"
                 />
               </fieldset>
               <fieldset class="form-group">
@@ -19,11 +20,12 @@
                   class="form-control form-control-lg"
                   type="password"
                   v-model="password"
-                  placeholder="Password"
+                  :placeholder="$t('login.lbl_password')"
                 />
               </fieldset>
+              <show-errors/>
               <button class="btn btn-lg btn-primary pull-xs-right" @click="onSubmit">
-                Sign in
+                {{ $t('login.btn_login') }}
               </button>
             </div>
           </div>
@@ -34,7 +36,7 @@
 </template>
 
 <script>
-
+import ShowErrors from '@/components/ShowErrors'
 export default {
   name: 'login',
   data () {
@@ -45,7 +47,18 @@ export default {
   },
   methods: {
     onSubmit () {
+      this.$store.dispatch('login', {
+        email: this.email,
+        password: this.password
+      })
+        .then(() => this.$router.push({ name: 'home' }))
     }
+  },
+  components: {
+    ShowErrors
+  },
+  created () {
+    this.$store.commit('purgeAuth')
   }
 }
 </script>

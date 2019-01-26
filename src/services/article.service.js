@@ -2,6 +2,6 @@ import ApiService from './api.service'
 
 export default {
   get () {
-    return ApiService.get('/articles')
+    return ApiService.get('/tasks')
   }
 }
