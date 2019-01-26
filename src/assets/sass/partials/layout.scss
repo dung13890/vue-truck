@@ -1,0 +1,134 @@
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  :focus {
+    outline: 0;
+    box-shadow: none;
+
+    @include box-shadow(none);
+  }
+  * {
+    border-radius: 0 !important;
+  }
+  button, .btn, input[type="button"] {
+    cursor: pointer;
+  }
+}
+
+.app-header {
+  flex: 0 0 $navbar-height;
+  z-index: $zindex-sticky;
+  position: fixed;
+  width: 100%;
+}
+
+.app-footer {
+  flex: 0 0 $footer-height;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  .copyright {
+    margin-bottom: 0;
+    text-align: right;
+    font-size: 11px;
+    text-align: center;
+    position: relative !important;
+  }
+}
+
+.app-body {
+  position: relative;
+  margin-top: $navbar-height;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  overflow-x: hidden;
+
+  .main {
+    flex: 1;
+    min-width: 0;
+    margin-left: $sidebar-width;
+    padding: 1rem 0 2rem;
+    background-color: $gray-background;
+  }
+
+  .sidebar {
+    // $sidebar-width is the width of the columns
+    flex: 0 0 $sidebar-width;
+    // put the nav on the left
+    order: -1;
+  }
+}
+
+.sidebar-hidden {
+
+  .sidebar {
+    margin-left: - $sidebar-width;
+  }
+  .main, .app-footer {
+    margin-left: 0;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .app-header.navbar {
+    text-align: center;
+    .brand {
+      width:auto !important;
+      background-color: $white !important;
+      .navbar-toggler {
+        color: $black !important;
+      }
+    }
+  }
+
+  .app-body {
+    margin-top: $navbar-height;
+  }
+
+  .sidebar {
+    margin-left: - $sidebar-width;
+  }
+
+  .main, .app-footer {
+    margin-left: 0 !important;
+  }
+
+  .sidebar-mobile-show {
+
+    .sidebar {
+      width: $sidebar-width;
+      margin-left: 0;
+
+      .sidebar-nav {
+        height: calc(100vh - #{$navbar-height});
+      }
+    }
+
+    .main, .app-footer {
+      margin-right: - $sidebar-width !important;
+      margin-left: $sidebar-width !important;
+    }
+  }
+
+  .hidden-md-down {
+    display: none !important
+  }
+}
+
+//
+// Animations
+//
+.app-header,
+.app-footer,
+.sidebar,
+.main {
+  transition: margin-left $layout-transition-speed, margin-right $layout-transition-speed, width $layout-transition-speed, flex $layout-transition-speed;
+}

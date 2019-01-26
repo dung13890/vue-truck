@@ -1,0 +1,18 @@
+version: "2"
+
+services:
+  application:
+    image: debian
+    volumes:
+      - ./:/var/www/app
+  node:
+    image: dung13890/vue-env:latest
+    environment:
+      - NODE_ENV=development
+    restart: always
+    volumes_from:
+      - application
+    tty: true
+    ports:
+      - "8080:8080"
+
