@@ -1,11 +1,15 @@
 import ApiService from './api.service'
 
 export default {
-  register (params) {
-    return ApiService.post('/users', { user: params })
+  logout () {
+    return ApiService.post('/logout')
   },
 
-  getAuth () {
-    return ApiService.get('/user')
+  login (params) {
+    return ApiService.post('/login', params)
+  },
+
+  getInfo () {
+    return ApiService.get('/users/info')
   }
 }

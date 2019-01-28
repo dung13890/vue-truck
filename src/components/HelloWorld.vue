@@ -1,39 +1,16 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <ul v-if="errors" class="error-messages">
-      <li v-for="(v, k) in errors" :key="k">{{ k }} {{ v | error }}</li>
-    </ul>
-    <form v-on:submit.prevent="onSubmit">
-      <fieldset class="form-group">
-        <input
-          class="form-control form-control-lg"
-          type="text"
-          v-model="username"
-          placeholder="Username"
-        />
-      </fieldset>
-      <fieldset class="form-group">
-        <input
-          class="form-control form-control-lg"
-          type="text"
-          v-model="email"
-          placeholder="Email"
-        />
-      </fieldset>
-      <fieldset class="form-group">
-        <input
-          class="form-control form-control-lg"
-          type="password"
-          v-model="password"
-          placeholder="Password"
-        />
-      </fieldset>
-      <button class="btn btn-lg btn-primary pull-xs-right">
-        Sign up
-      </button>
-    </form>
-
+    <div class="card">
+      <div class="card-body">
+        <p>{{ user.name }}</p>
+        <p>{{ user.email }}</p>
+        <p>{{ user.birthday }}</p>
+        <button class="btn btn-lg btn-warning pull-xs-right" @click="onLogout">
+          {{ $t('login.btn_login') }}
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -53,18 +30,19 @@ export default {
   },
   computed: {
     ...mapState({
-      errors: state => state.auth.errors
+      user: state => state.auth.user
     })
   },
   methods: {
-    onSubmit () {
+    onLogout () {
       this.$store
-        .dispatch('register', {
-          email: this.email,
-          password: this.password,
-          username: this.username
-        })
+        .dispatch('logout')
+        .then(() => this.$router.push({ name: 'login' }))
     }
+  },
+  created () {
+    this.$store
+      .dispatch('getInfo')
   }
 }
 </script>

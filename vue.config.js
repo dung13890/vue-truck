@@ -3,7 +3,7 @@ module.exports = {
     watchOptions: {
       ignored: ['/node_modules/', '/src/assets/bower/'],
       aggregateTimeout: 300,
-      poll: 1000,
-    },
-  },
+      poll: 1000
+    }
+  }
 }

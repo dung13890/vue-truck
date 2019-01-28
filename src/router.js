@@ -14,13 +14,24 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'home',
-      component: () => import('@/views/Home')
+      name: 'main',
+      component: () => import('@/views/Main'),
+      children: [
+        {
+          path: 'home',
+          name: 'home',
+          component: () => import('@/views/main/Home')
+        },
+        {
+          path: 'about',
+          name: 'about',
+          component: () => import('@/views/main/About')
+        }
+      ]
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('@/views/About.vue')
+      path: '*',
+      component: () => import('@/views/404')
     }
   ]
 })

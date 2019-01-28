@@ -1,2 +1,9 @@
-export const API_URL = 'https://conduit.productionready.io/api'
+export const API_URL = 'https://develop.domain.com/api/v1'
 export const API_TIMEOUT = 1000
+export const EXCEPTION_STATUS = {
+  statusOK: 200,
+  unauthorized: 401,
+  unprocessableEntity: 422,
+  InternalServerError: 500,
+  BadRequest: 400
+}

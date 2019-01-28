@@ -3,49 +3,60 @@ import UserService from '@/services/user.service'
 import ApiService from '@/services/api.service'
 
 const state = {
-  errors: null,
   user: {},
   isAuthenticated: !!JwtService.getToken()
 }
 
 const mutations = {
-  setError (state, errors) {
-    state.errors = errors
-  },
-  setAuth (state, user) {
-    state.isAuthenticated = true
+  setUser (state, user) {
     state.user = user
-    state.errors = {}
-    JwtService.saveToken(user.token)
   },
+
+  setAuth (state) {
+    state.isAuthenticated = true
+  },
+
   purgeAuth (state) {
     state.isAuthenticated = false
     state.user = {}
-    state.errors = {}
     JwtService.destroyToken()
+  },
+
+  setToken (state, token) {
+    JwtService.saveToken(token)
   }
 }
 
 const actions = {
-  checkAuth ({ commit }) {
-    if (JwtService.getToken()) {
+  checkAuth ({ commit, state }) {
+    if (JwtService.getToken() && state.isAuthenticated) {
       ApiService.setHeader()
-      UserService.getAuth()
-        .then(data => commit('setAuth', data.user))
-        .catch(response => commit('setError', response.data.errors))
+      commit('setAuth')
     } else {
       commit('purgeAuth')
     }
   },
 
-  async register (context, params) {
+  async login (context, params) {
     try {
-      const { data } = await UserService.register(params)
-      context.commit('setAuth', data.user)
+      const { data } = await UserService.login(params)
+      context.commit('setToken', data.data.access_token)
       return data
-    } catch (errors) {
-      throw new Error(`[ERROR] ApiService`)
+    } catch (error) {
+      context.commit('setError', error.response.data)
+      throw new Error(`[Error] ${error.response.data.message}`)
     }
+  },
+
+  getInfo (context) {
+    return UserService.getInfo()
+      .then(res => context.commit('setUser', res.data.data))
+      .catch(error => context.commit('setError', error.response.data))
+  },
+
+  logout (context) {
+    UserService.logout()
+    context.commit('purgeAuth')
   }
 }
 
