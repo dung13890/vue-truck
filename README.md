@@ -1,5 +1,7 @@
 # truck
 
+[![Build Status](https://travis-ci.org/dung13890/vue-truck.svg?branch=master)](https://travis-ci.org/dung13890/vue-truck)
+
 ## Project setup
 ```
 yarn install
