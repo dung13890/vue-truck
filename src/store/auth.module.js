@@ -29,12 +29,14 @@ const mutations = {
 
 const actions = {
   checkAuth ({ commit, state }) {
-    if (JwtService.getToken() && state.isAuthenticated) {
+    if (JwtService.getToken()) {
       ApiService.setHeader()
       commit('setAuth')
+      return state.isAuthenticated
     } else {
       commit('purgeAuth')
     }
+    return state.isAuthenticated
   },
 
   async login (context, params) {

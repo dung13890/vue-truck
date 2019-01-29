@@ -21,7 +21,14 @@ const i18n = new VueI18n({
 ApiService.init()
 
 router.beforeEach((to, from, next) => {
-  Promise.all([store.dispatch('checkAuth')]).then(next)
+  store.dispatch('checkAuth')
+    .then(isAuth => {
+      if (!isAuth && to.path !== '/login') {
+        next({ name: 'login' })
+      } else {
+        next()
+      }
+    })
 })
 
 new Vue({

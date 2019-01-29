@@ -9,8 +9,8 @@
       >
       <p v-for="(v, k) in error.messages" :key="k">{{ v }}</p>
       <div slot="modal-footer" class="w-100">
-        <b-btn @click="closeError">
-          Close
+        <b-btn @click="closeError" variant="light float-right">
+          {{ $t('common.btn_close') }}
         </b-btn>
       </div>
     </b-modal>

@@ -24,7 +24,7 @@
                 />
               </fieldset>
               <show-errors/>
-              <button class="btn btn-lg btn-primary pull-xs-right" @click="onSubmit">
+              <button class="btn btn-lg btn-primary btn-block" @click="onSubmit">
                 {{ $t('login.btn_login') }}
               </button>
             </div>
