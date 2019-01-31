@@ -1,20 +1,30 @@
 <template>
-  <div id="main">
-    <div id="nav">
-      <router-link to="/home">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+  <div>
+    <app-header/>
+      <div class="app-body">
+        <app-sidebar></app-sidebar>
+        <main id="main" class="main">
+          <div class="container-fluid">
+            <router-view/>
+          </div>
+        </main>
+        <app-footer/>
+      </div>
     <show-errors/>
-    <router-view/>
   </div>
 </template>
 
 <script>
 import ShowErrors from '@/components/ShowErrors'
+import AppHeader from '@/components/partials/Header'
+import AppSidebar from '@/components/partials/Sidebar'
+import AppFooter from '@/components/partials/Footer'
 export default {
-  name: 'main',
   components: {
-    ShowErrors
+    ShowErrors,
+    AppHeader,
+    AppSidebar,
+    AppFooter
   }
 }
 </script>

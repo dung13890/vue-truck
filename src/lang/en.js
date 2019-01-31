@@ -5,5 +5,9 @@ export default {
     txt_login_hint: 'Login with your account!',
     lbl_email: 'Email',
     lbl_password: 'Password'
+  },
+
+  common: {
+    btn_close: 'Close'
   }
 }
