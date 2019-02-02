@@ -1,4 +1,4 @@
-export const API_URL = 'https://develop.domain.example/api/v1'
+export const API_URL = 'https://develop.example.com/api/v1'
 export const API_TIMEOUT = 1000
 export const EXCEPTION_STATUS = {
   statusOK: 200,
