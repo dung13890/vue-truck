@@ -3,9 +3,10 @@
     <h1>{{ msg }}</h1>
     <div class="card">
       <div class="card-body">
-        <p>{{ user.name }}</p>
+        <p>{{ user.username }}</p>
         <p>{{ user.email }}</p>
-        <p>{{ user.birthday }}</p>
+        <p>{{ user.created_at }}</p>
+        <p>{{ user.updated_at }}</p>
       </div>
     </div>
   </div>

@@ -11,8 +11,8 @@ const getters = {
 
 const mutations = {
   setError (state, error) {
-    state.error.status = error.code
-    state.error.messages = error.message
+    state.error.status = error.status
+    state.error.messages = error.messages
   },
 
   purgeError (state) {

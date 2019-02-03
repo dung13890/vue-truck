@@ -10,6 +10,6 @@ export default {
   },
 
   getInfo () {
-    return ApiService.get('/users/info')
+    return ApiService.get('/info')
   }
 }
