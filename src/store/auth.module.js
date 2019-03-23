@@ -46,7 +46,7 @@ const actions = {
       return data
     } catch (error) {
       context.commit('setError', error.response.data)
-      throw new Error(`[Error] ${error.response.data.message}`)
+      throw new Error(`[Error] ${error.response.data.messages}`)
     }
   },
 
