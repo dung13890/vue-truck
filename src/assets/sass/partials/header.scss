@@ -6,6 +6,9 @@
       button {
         color: $black;
       }
+      .navbar-brand {
+        display:none;
+      }
     }
   }
 }
@@ -24,6 +27,7 @@
     background-color: $gray-brand;
     .navbar-toggler {
       color: $white;
+      height: 74px;
     }
     .navbar-brand {
       display: inline-block;
