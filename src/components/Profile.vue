@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
     <div class="card">
       <div class="card-body">
         <p>{{ user.username }}</p>
@@ -15,7 +14,7 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  name: 'HelloWorld',
+  name: 'Profile',
   data () {
     return {
       username: '',
